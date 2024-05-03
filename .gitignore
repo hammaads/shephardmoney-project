@@ -38,3 +38,4 @@ out/
 
 ### h2
 *.h2.db
+/README.md
