@@ -1,5 +1,6 @@
 package com.shepherdmoney.interviewproject.controller;
 
+import com.shepherdmoney.interviewproject.model.BalanceHistory;
 import com.shepherdmoney.interviewproject.model.CreditCard;
 import com.shepherdmoney.interviewproject.model.User;
 import com.shepherdmoney.interviewproject.repository.CreditCardRepository;
@@ -47,7 +48,11 @@ public class CreditCardController {
         CreditCard creditCardToCreate = new CreditCard();
         creditCardToCreate.setIssuanceBank(payload.getCardIssuanceBank());
         creditCardToCreate.setNumber(payload.getCardNumber());
-        creditCardToCreate.setBalanceHistory(new TreeMap<>(Map.of(LocalDate.now(), 0.0)));
+
+        BalanceHistory initBalanceHistory = new BalanceHistory();
+        initBalanceHistory.setBalance(0);
+        initBalanceHistory.setDate(LocalDate.now());
+        creditCardToCreate.setBalanceHistory(new TreeMap<LocalDate, BalanceHistory>(Map.<LocalDate, BalanceHistory>of(LocalDate.now(), initBalanceHistory)));
 
         // Associate card with the user
         creditCardToCreate.setOwner(user);

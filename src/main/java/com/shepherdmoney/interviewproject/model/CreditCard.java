@@ -59,5 +59,5 @@ public class CreditCard {
     //        6. In the condition that there are gaps, retrieval of "closest **previous**" balance date should also be fast. Aka, given 4-15, return 4-13 entry tuple
 
     @OneToMany(cascade = CascadeType.ALL)
-    private SortedMap<LocalDate, Double> balanceHistory = new TreeMap<>();
+    private SortedMap<LocalDate, BalanceHistory> balanceHistory = new TreeMap<>();
 }
